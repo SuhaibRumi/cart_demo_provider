@@ -1,5 +1,7 @@
+import 'package:catalog_app_provider/provider/cart_provider.dart';
 import 'package:catalog_app_provider/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,15 +13,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: Builder(builder: (BuildContext context) {
+         return MaterialApp(
+           debugShowCheckedModeBanner: false,
       title: 'Catalog app ',
       theme: ThemeData(
-    
         primarySwatch: Colors.blue,
       ),
       home: const HomeScreen()
     );
+      }),
+      );
+   
+     
   }
 }
 
