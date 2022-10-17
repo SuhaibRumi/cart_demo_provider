@@ -5,8 +5,8 @@ class Cart {
   final int? productPrice;
   final int? initialPrice;
   final int? quantity;
-  String? unitTag;
-  String? imageUrl;
+  final String? unitTag;
+  final String? imageUrl;
 
   Cart(
       {required this.id,

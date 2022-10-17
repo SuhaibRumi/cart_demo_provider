@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
            debugShowCheckedModeBanner: false,
       title: 'Catalog app ',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const HomeScreen()
     );

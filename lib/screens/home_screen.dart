@@ -143,10 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           print(productUnit[index].toString());
                                           print(productImage[index].toString());
 
-                                          dbHelper!
-                                              .insert(
+                                        dbHelper!.insert (
                                             Cart(
-                                              id: index,
+                                              id: index ,
                                               productId: index.toString(),
                                               productName:
                                                   productName[index].toString(),
@@ -157,16 +156,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   productUnit[index].toString(),
                                               imageUrl: productImage[index]
                                                   .toString(),
-                                            ),
+                                         ),
                                           )
                                               .then((value) {
+                                        
                                             print("Cart is added ");
                                             cart.addTotalPrice(double.parse(
                                                 productPrice[index]
                                                     .toString()));
                                             cart.addCounter();
                                           }).onError((error, stackTrace) {
-                                            print(error.toString());
+                                            // print(error.toString());
                                           });
                                         },
                                         child: Container(

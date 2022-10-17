@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartProvider with ChangeNotifier {
-  DBHelper db = DBHelper();
+  DBHelper? db = DBHelper();
 
   int _counter = 0;
   int get counter => _counter;
@@ -16,7 +16,7 @@ class CartProvider with ChangeNotifier {
   Future<List<Cart>> get cart => _cart;
 
   Future<List<Cart>> getData() async {
-    _cart = db.getCartList();
+    _cart = db!.getCartList();
     return _cart;
   }
 
