@@ -1,6 +1,7 @@
 # catalog_app_provider
 
-Cart Provider Demo app Using provider (sate Managment) to show how to prodcut add to cart.
+Cart Provider Demo app to show how to add to the cart Using provider (state Management)
+
 
 ## Getting Started
 
