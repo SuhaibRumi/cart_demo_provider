@@ -1,6 +1,6 @@
 # catalog_app_provider
 
-A new Flutter project.
+Cart Provider Demo app Using provider (sate Managment) to show how to prodcut add to cart.
 
 ## Getting Started
 
