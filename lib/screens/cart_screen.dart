@@ -28,35 +28,25 @@ class _CartScreenState extends State<CartScreen> {
         actions: [
           Center(
             child: badges.Badge(
-              position: badges.BadgePosition.topEnd(top: -10, end: -12),
-              showBadge: true,
-              ignorePointer: false,
-              onTap: () {},
-              badgeContent:
-                  const Icon(Icons.check, color: Colors.white, size: 10),
-              badgeAnimation: const badges.BadgeAnimation.rotation(
+              onTap: () {
+                Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CartScreen()));
+              },
+              badgeContent: Consumer<CartProvider>(
+                builder: (context, value, chlid) {
+                  return Text(
+                    value.getCounter().toString(),
+                    style: const TextStyle(color: Colors.white),
+                  );
+                },
+              ),
+              badgeAnimation: const badges.BadgeAnimation.fade(
                 animationDuration: Duration(seconds: 1),
                 colorChangeAnimationDuration: Duration(seconds: 1),
-                loopAnimation: false,
-                curve: Curves.fastOutSlowIn,
-                colorChangeAnimationCurve: Curves.easeInCubic,
               ),
-              badgeStyle: badges.BadgeStyle(
-                shape: badges.BadgeShape.square,
-                badgeColor: Colors.blue,
-                padding: const EdgeInsets.all(5),
-                borderRadius: BorderRadius.circular(4),
-                borderSide: const BorderSide(color: Colors.white, width: 2),
-                borderGradient: const badges.BadgeGradient.linear(
-                    colors: [Colors.red, Colors.black]),
-                badgeGradient: const badges.BadgeGradient.linear(
-                  colors: [Colors.blue, Colors.yellow],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-                elevation: 0,
-              ),
-              child: const Text('Badge'),
+              child: const Icon(Icons.shopping_bag_outlined),
             ),
           ),
           const SizedBox(
