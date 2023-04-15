@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:catalog_app_provider/model/cart_model.dart';
 import 'package:catalog_app_provider/provider/cart_provider.dart';
 import 'package:catalog_app_provider/screens/cart_screen.dart';
@@ -54,11 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         actions: [
           InkWell(
-            onTap:(){
-              Navigator.push(context, MaterialPageRoute(builder: (_) => const CartScreen()));
-            } ,
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const CartScreen()));
+            },
             child: Center(
-              child: Badge(
+              child: badge.Badge(
                 badgeContent:
                     Consumer<CartProvider>(builder: (context, value, child) {
                   return Text(
@@ -66,7 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: const TextStyle(color: Colors.white),
                   );
                 }),
-                animationDuration: const Duration(milliseconds: 300),
+                badgeAnimation: const badge.BadgeAnimation.slide(
+                    animationDuration: Duration(milliseconds: 300)),
                 child: const Icon(
                   Icons.shopping_bag_outlined,
                   size: 25,
@@ -142,10 +144,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                           print('1');
                                           print(productUnit[index].toString());
                                           print(productImage[index].toString());
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text("item add to cart"),
+                                            ),
+                                          );
 
-                                        dbHelper!.insert (
+                                          dbHelper!
+                                              .insert(
                                             Cart(
-                                              id: index ,
+                                              id: index,
                                               productId: index.toString(),
                                               productName:
                                                   productName[index].toString(),
@@ -156,10 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   productUnit[index].toString(),
                                               imageUrl: productImage[index]
                                                   .toString(),
-                                         ),
+                                            ),
                                           )
                                               .then((value) {
-                                        
                                             print("Cart is added ");
                                             cart.addTotalPrice(double.parse(
                                                 productPrice[index]
@@ -186,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               )

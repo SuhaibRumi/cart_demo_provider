@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:catalog_app_provider/model/cart_model.dart';
 import 'package:catalog_app_provider/provider/cart_provider.dart';
 import 'package:catalog_app_provider/utils/db_helper.dart';
@@ -27,19 +27,36 @@ class _CartScreenState extends State<CartScreen> {
         centerTitle: true,
         actions: [
           Center(
-            child: Badge(
+            child: badges.Badge(
+              position: badges.BadgePosition.topEnd(top: -10, end: -12),
+              showBadge: true,
+              ignorePointer: false,
+              onTap: () {},
               badgeContent:
-                  Consumer<CartProvider>(builder: (context, value, child) {
-                return Text(
-                  value.getCounter().toString(),
-                  style: const TextStyle(color: Colors.white),
-                );
-              }),
-              animationDuration: const Duration(milliseconds: 300),
-              child: const Icon(
-                Icons.shopping_bag_outlined,
-                size: 25,
+                  const Icon(Icons.check, color: Colors.white, size: 10),
+              badgeAnimation: const badges.BadgeAnimation.rotation(
+                animationDuration: Duration(seconds: 1),
+                colorChangeAnimationDuration: Duration(seconds: 1),
+                loopAnimation: false,
+                curve: Curves.fastOutSlowIn,
+                colorChangeAnimationCurve: Curves.easeInCubic,
               ),
+              badgeStyle: badges.BadgeStyle(
+                shape: badges.BadgeShape.square,
+                badgeColor: Colors.blue,
+                padding: const EdgeInsets.all(5),
+                borderRadius: BorderRadius.circular(4),
+                borderSide: const BorderSide(color: Colors.white, width: 2),
+                borderGradient: const badges.BadgeGradient.linear(
+                    colors: [Colors.red, Colors.black]),
+                badgeGradient: const badges.BadgeGradient.linear(
+                  colors: [Colors.blue, Colors.yellow],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                elevation: 0,
+              ),
+              child: const Text('Badge'),
             ),
           ),
           const SizedBox(
@@ -71,7 +88,7 @@ class _CartScreenState extends State<CartScreen> {
                           Center(
                               child: Text('Explore Your Product',
                                   style:
-                                      Theme.of(context).textTheme.headline6)),
+                                      Theme.of(context).textTheme.titleLarge)),
                         ],
                       );
                     } else {
